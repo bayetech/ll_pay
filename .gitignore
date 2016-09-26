@@ -1,0 +1,15 @@
+# Ignore rubymine files
+/.idea
+.DS_Store
+/.bundle/
+/.yardoc
+/Gemfile.lock
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+*.sublime-workspace
+spec/examples.txt
+.byebug_history
