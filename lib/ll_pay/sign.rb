@@ -5,14 +5,14 @@ module LlPay
     def self.generate(params, options = {})
       sign_type = params[:sign_type]
       md5_key = options[:md5_key] || LlPay.md5_key
-      rsa_pub_key = options[:rsa_pub_key] || LlPay.rsa_pub_key
+      rsa_pri_key = options[:rsa_pri_key] || LlPay.rsa_pri_key
       string = params_to_string(params)
 
       case sign_type
       when 'MD5'
         MD5.sign(md5_key, string)
       when 'RSA'
-        RSA.sign(rsa_pub_key, string)
+        RSA.sign(rsa_pri_key, string)
       else
         raise ArgumentError, "invalid sign_type #{sign_type}, allow value: 'MD5', 'RSA'"
       end

@@ -8,7 +8,7 @@ module LlPay
   @debug_mode = true
 
   class << self
-    attr_accessor :rsa_pub_key, :md5_key, :debug_mode
+    attr_accessor :rsa_pri_key, :rsa_pub_key, :md5_key, :debug_mode
 
     def debug_mode?
       @debug_mode
