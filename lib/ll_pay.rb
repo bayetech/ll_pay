@@ -6,17 +6,12 @@ require 'll_pay/notify'
 require 'll_pay/query_order'
 
 module LlPay
-  @debug_mode = true
+  # 银通公钥
+  YT_PUB_KEY = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCSS/DiwdCf/aZsxxcacDnooGph3d2JOj5GXWi+q3gznZauZjkNP8SKl3J2liP0O6rU/Y/29+IUe+GTMhMOFJuZm1htAtKiu5ekW0GlBMWxf4FPkYlQkPE0FtaoMP3gYfh+OwI+fIRrpW3ySn3mScnc6Z700nU/VYrRkfcSCbSnRwIDAQAB'.freeze
 
   class << self
     attr_accessor :oid_partner # 商户编号
     attr_accessor :rsa_pri_key # 私钥
-    attr_accessor :rsa_pub_key # 公钥
     attr_accessor :md5_key     # md5
-    attr_accessor :debug_mode
-
-    def debug_mode?
-      @debug_mode
-    end
   end
 end

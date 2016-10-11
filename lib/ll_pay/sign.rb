@@ -28,8 +28,7 @@ module LlPay
         md5_key = options[:md5_key] || LlPay.md5_key
         MD5.verify?(md5_key, string, sign)
       when 'RSA'
-        rsa_pub_key = LlPay.rsa_pub_key
-        RSA.verify?(rsa_pub_key, string, sign)
+        RSA.verify?(LlPay::YT_PUB_KEY, string, sign)
       else
         false
       end
