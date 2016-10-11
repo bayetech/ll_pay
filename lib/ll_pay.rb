@@ -3,6 +3,7 @@ require 'll_pay/sign'
 require 'll_pay/sign/md5'
 require 'll_pay/sign/rsa'
 require 'll_pay/notify'
+require 'll_pay/query_order'
 
 module LlPay
   @debug_mode = true
