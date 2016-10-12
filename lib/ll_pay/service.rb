@@ -9,7 +9,7 @@ module LlPay
 
       params = { oid_partner: LlPay.oid_partner }.merge(params)
 
-      params[:sign] = LlPay.Sign.generate(params)
+      params[:sign] = LlPay::Sign.generate(params)
 
       params.to_json
     end
