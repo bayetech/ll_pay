@@ -5,6 +5,7 @@ require 'll_pay/sign/rsa'
 require 'll_pay/notify'
 require 'll_pay/query_order'
 require 'll_pay/service'
+require 'll_pay/utils'
 
 module LlPay
   # 银通公钥
