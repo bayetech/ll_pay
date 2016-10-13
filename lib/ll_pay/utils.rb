@@ -1,4 +1,4 @@
-module Llpay
+module LlPay
   module Utils
     def self.stringify_keys(hash)
       new_hash = {}

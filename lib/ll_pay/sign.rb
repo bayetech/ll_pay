@@ -3,8 +3,8 @@ require 'digest/md5'
 module LlPay
   module Sign
     def self.generate(params, options = {})
-      params = Llpay::Utils.stringify_keys(params)
-      options = Llpay::Utils.stringify_keys(options)
+      params = LlPay::Utils.stringify_keys(params)
+      options = LlPay::Utils.stringify_keys(options)
 
       sign_type = params[:sign_type]
       md5_key = options[:md5_key] || LlPay.md5_key
@@ -22,8 +22,8 @@ module LlPay
     end
 
     def self.verify?(params, options = {})
-      params = Llpay::Utils.stringify_keys(params)
-      options = Llpay::Utils.stringify_keys(options)
+      params = LlPay::Utils.stringify_keys(params)
+      options = LlPay::Utils.stringify_keys(options)
 
       sign_type = params[:sign_type]
       sign = params.delete(:sign)
