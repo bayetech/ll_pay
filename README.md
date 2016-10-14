@@ -44,3 +44,13 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/ll_pay.
 
+
+[version-badge]: https://badge.fury.io/rb/ll_pay.svg
+[rubygems]: https://rubygems.org/gems/ll_pay
+[travis-badge]: https://travis-ci.org/bayetech/ll_pay.svg
+[travis]: https://travis-ci.org/bayetech/ll_pay
+[codeclimate-badge]: https://codeclimate.com/github/bayetech/ll_pay/badges/gpa.svg
+[codeclimate]: https://codeclimate.com/github/bayetech/ll_pay
+[codecoverage-badge]: https://codeclimate.com/github/bayetech/ll_pay/badges/coverage.svg
+[codecoverage]: https://codeclimate.com/github/bayetech/ll_pay/coverage
+
