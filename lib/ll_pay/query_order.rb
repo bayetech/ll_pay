@@ -9,10 +9,10 @@ module LlPay
 
       if sign_type == 'RSA'
         query_order_hash[:sign_type] = 'RSA'
-        query_order_hash[:sign] = LlPay::Sign::RSA.sign(LlPay.rsa_pri_key, params_to_string(query_order_hash))
+        query_order_hash[:sign] = LlPay::Sign::RSA.sign(LlPay.rsa_pri_key, LlPay::Sign.params_to_string(query_order_hash))
       else
         query_order_hash[:sign_type] = 'MD5'
-        query_order_hash[:sign] = LlPay::Sign::MD5.sign(LlPay.md5_key, params_to_string(query_order_hash))
+        query_order_hash[:sign] = LlPay::Sign::MD5.sign(LlPay.md5_key, LlPay::Sign.params_to_string(query_order_hash))
       end
 
       http_response = HTTP.post('https://yintong.com.cn/queryapi/orderquery.htm',
@@ -21,7 +21,7 @@ module LlPay
       response_hash = JSON.parse(http_response.body.to_s)
 
       if http_response.code == 200
-        if response_hash['ret_code'] == 0000 && LlPay::Sign.verify?(params_to_string(response_hash))
+        if response_hash['ret_code'] == 0000 && LlPay::Sign.verify?(LlPay::Sign.params_to_string(response_hash))
           return response_hash
         else
           return response_hash
@@ -29,12 +29,6 @@ module LlPay
       else
         return
       end
-    end
-
-    def self.params_to_string(params)
-      params.sort.map do |k, v|
-        "#{k}=#{v}" if v.to_s != '' && k.to_s != 'sign'
-      end.compact.join('&')
     end
   end
 end
