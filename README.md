@@ -22,7 +22,16 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Config
+
+Create `config/initializers/ll_pay.rb` and put following configurations into it.
+
+```ruby
+
+LlPay.oid_partner = "oid_partner"  ＃ lianlian pay 商户编号
+LlPay.rsa_pri_key = "rsa_pri_key"  #  商户RSA密钥
+LlPay.md5_key = "md5_key"          ＃ 商户 MD5
+```
 
 ## Development
 
