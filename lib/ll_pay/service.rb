@@ -5,6 +5,9 @@ module LlPay
 
     SECURITY_PAY_REQUIRED_PARAMS = %w(notify_url no_order dt_order busi_partner money_order valid_order user_id)
     def self.securitypay_pay_json(params, options = {})
+      params = LlPay::Utils.stringify_keys(params)
+      options = LlPay::Utils.stringify_keys(options)
+
       params[:sign_type] = options[:sign_type] || LlPay.sign_type
 
       params = { oid_partner: LlPay.oid_partner }.merge(params)
