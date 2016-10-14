@@ -9,6 +9,7 @@ module LlPay
       sign_type = params[:sign_type]
       md5_key = options[:md5_key] || LlPay.md5_key
       rsa_pri_key = options[:rsa_pri_key] || LlPay.rsa_pri_key
+      params[:oid_partner] = LlPay.oid_partner
       string = params_to_string(params)
 
       case sign_type
