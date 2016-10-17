@@ -9,9 +9,9 @@ module LlPay
         Base64.strict_encode64(rsa.sign('sha1', string))
       end
 
-      def self.verify?(string, sign)
-        public_key = OpenSSL::PKey::RSA.new File.read(File.expand_path('./llpay_public_key.pem', __dir__))
-        public_key.verify('sha1', Base64.strict_decode64(sign), string)
+      def self.verify?(pubkey, string, sign)
+        rsa = OpenSSL::PKey::RSA.new(pubkey)
+        rsa.verify('sha1', Base64.strict_decode64(sign), string.force_encoding("utf-8"))
       end
     end
   end

@@ -12,9 +12,6 @@ module LlPay
         'bank_code' => params['bank_code']
       }
 
-      llpay_public_key.pem
-      public_key = OpenSSL::PKey::RSA.new(File.read("./llpay_public_key.pem"))
-
       LlPay::Sign.verify?(params, options) && LlPay.oid_partner == params[:oid_partner]
     end
   end
