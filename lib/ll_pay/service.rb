@@ -16,9 +16,7 @@ module LlPay
 
       sign_params = { 'busi_partner' => params['busi_partner'],
                       'dt_order' => params['dt_order'],
-                      'info_order' => params['info_order'],
                       'money_order' => params['money_order'],
-                      'name_goods' => params['name_goods'],
                       'no_order' => params['no_order'],
                       'notify_url' => params['notify_url'],
                       'oid_partner' => params['oid_partner'],
