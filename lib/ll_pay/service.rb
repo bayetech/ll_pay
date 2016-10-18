@@ -4,7 +4,7 @@ module LlPay
   module Service
 
     SECURITY_PAY_REQUIRED_PARAMS = %w(busi_partner dt_order info_order money_order name_goods no_order notify_url oid_partner risk_item sign_type valid_order)
-    def self.securitypay_pay_json(params, options = {})
+    def securitypay_pay_json(params, options = {})
       # params = LlPay::Utils.stringify_keys(params)
       # options = LlPay::Utils.stringify_keys(options)
 
@@ -30,7 +30,7 @@ module LlPay
       params.to_json
     end
 
-    def self.check_required_params(params, names)
+    def check_required_params(params, names)
       names.each do |name|
         warn("ll_pay Warn: missing required option: #{name}") unless params.has_key?(name)
       end
