@@ -10,7 +10,7 @@ module LlPay
 
       check_required_params(params, SECURITY_PAY_REQUIRED_PARAMS)
 
-      params['sign_type'] = options['sign_type'] || LlPay.sign_type
+      params['sign_type'] = params['sign_type'] || LlPay.sign_type
 
       params = { 'oid_partner' => LlPay.oid_partner }.merge(params)
 
