@@ -21,7 +21,7 @@ module LlPay
       response_hash = JSON.parse(http_response.body.to_s)
 
       if http_response.code == 200
-        if response_hash['ret_code'] == 0000 && LlPay::Sign.verify?(LlPay::Sign.params_to_string(response_hash))
+        if response_hash['ret_code'] == 0000 && LlPay::Sign.verify?(response_hash)
           return response_hash
         else
           return response_hash
