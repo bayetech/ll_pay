@@ -4,7 +4,7 @@ require 'http' # https://github.com/httprb/http
 
 module LlPay
   module QueryOrder
-    def self.query_single_order(sign_type, no_order, dt_order)
+    def query_single_order(sign_type, no_order, dt_order)
       query_order_hash = { oid_partner: LlPay.oid_partner, dt_order: dt_order, no_order: no_order }
 
       if sign_type == 'RSA'

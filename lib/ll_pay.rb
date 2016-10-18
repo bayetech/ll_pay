@@ -4,6 +4,7 @@ require 'll_pay/sign/md5'
 require 'll_pay/sign/rsa'
 require 'll_pay/notify'
 require 'll_pay/query_order'
+require 'll_pay/refund_order'
 require 'll_pay/service'
 require 'll_pay/utils'
 
@@ -24,5 +25,7 @@ kPE0FtaoMP3gYfh+OwI+fIRrpW3ySn3mScnc6Z700nU/VYrRkfcSCbSnRwIDAQAB
     attr_accessor :rsa_pri_key # 私钥
     attr_accessor :md5_key     # md5
     attr_accessor :sign_type
+
+    include QueryOrder
   end
 end

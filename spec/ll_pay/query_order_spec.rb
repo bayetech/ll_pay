@@ -15,7 +15,7 @@ describe LlPay::QueryOrder do
 
       expect(HTTP).to receive(:post).with('https://yintong.com.cn/queryapi/orderquery.htm', json: query_order_hash).and_return(HTTP::Response.new(status: 200, body: expect_result_json, version: '1.0'))
 
-      response_hash = LlPay::QueryOrder.query_single_order('MD5', '2013051500001', nil)
+      response_hash = LlPay.query_single_order('MD5', '2013051500001', nil)
 
       expect(response_hash).to eq(JSON.parse(expect_result_json))
     end
@@ -33,7 +33,7 @@ describe LlPay::QueryOrder do
 
       expect(HTTP).to receive(:post).with('https://yintong.com.cn/queryapi/orderquery.htm', json: query_order_hash).and_return(HTTP::Response.new(status: 200, body: expect_result_json, version: '1.0'))
 
-      response_hash = LlPay::QueryOrder.query_single_order('RSA', '2013051500001', nil)
+      response_hash = LlPay.query_single_order('RSA', '2013051500001', nil)
 
       expect(response_hash).to eq(JSON.parse(expect_result_json))
     end
