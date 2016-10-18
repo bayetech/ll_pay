@@ -28,5 +28,6 @@ kPE0FtaoMP3gYfh+OwI+fIRrpW3ySn3mScnc6Z700nU/VYrRkfcSCbSnRwIDAQAB
 
     include QueryOrder
     include Service
+    include Notify
   end
 end

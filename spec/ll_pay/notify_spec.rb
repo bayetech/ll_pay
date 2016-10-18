@@ -15,7 +15,7 @@ describe LlPay::Notify do
                       'sign' => 'W8Wjd1UcTbU424U+qRbU5CxFMFrJEuChwrweDG7i9lkBMT88NNJ8hkwOC+lyyGZEjniF8QX1xlQ0V0BnAZSFMD/RKSce/Vb4SJJ0C4QubMKqy3Qs0jITmLKuPQpmolCKVMskoeRJaWFMlT6OOG5D/6B+UBsyRv/2C0l+wJLyyzI=',
                       'sign_type' => 'RSA' }
 
-      expect(LlPay::Notify.verify?(hash_params, { oid_partner: '201609211001116515' }))
+      expect(LlPay.notify_verify?(hash_params, { oid_partner: '201609211001116515' }))
         .to eq true
     end
   end

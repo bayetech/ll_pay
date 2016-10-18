@@ -1,6 +1,6 @@
 module LlPay
   module Notify
-    def self.verify?(params, options = {})
+    def notify_verify?(params, options = {})
       params = LlPay::Utils.stringify_keys(params)
       options = LlPay::Utils.stringify_keys(options)
 
