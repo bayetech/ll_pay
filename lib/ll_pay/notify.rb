@@ -1,18 +1,11 @@
 module LlPay
   module Notify
     def self.verify?(params, options = {})
-      sign_params = {
-        'oid_partner' => params['oid_partner'],
-        'sign_type'   => params['sign_type'],
-        'dt_order' => params['dt_order'],
-        'no_order' => params['no_order'],
-        'oid_paybill' => params['oid_paybill'],
-        'money_order' => params['money_order'],
-        'result_pay' => params['result_pay'],
-        'bank_code' => params['bank_code']
-      }
+      params = LlPay::Utils.stringify_keys(params)
+      options = LlPay::Utils.stringify_keys(options)
 
-      LlPay::Sign.verify?(params, options) && LlPay.oid_partner == params[:oid_partner]
+      oid_partner = options[:oid_partner] || LlPay.oid_partner
+      LlPay::Sign.verify?(params, options) && oid_partner == params[:oid_partner]
     end
   end
 end

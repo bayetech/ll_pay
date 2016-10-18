@@ -4,7 +4,7 @@ describe LlPay::Sign do
   describe '#sign rsa generate' do
     specify 'test sign generate rsa' do
       expect(LlPay::Sign.generate({ sign_type: 'RSA', oid_partner: '201103171000000000', dt_order: '20130515094013' }))
-        .to eq 'gN4RdsOHfpsXzM2ylEy75R72ohrVjx50HLpQrBzti+VgTKnDrzOsS7l344hA4vkCKL7qrlSTva5LeN9WqxKkg+aS15IUbR+AzWo3+Is3QYgNQISkroKWK7skLMTQvlEvzi48azKV9VPXWtWokV4yVJpGwyjJUKgtYqTCphQ6fmc='
+        .to eq 'gDPdKXfrgy9oIpWDyGGjdUoIi7iiDKrjAAk4W3UT2m27xwnqbkWEVUK/wXsKTZh7a6WUGtEKKgTLGQ9VSF5NjsdXlqx4aOZ8a4cWhqOHXsYCvokxRwdD0/Q8NJ7uw34E3+HSzNOwqjCKC6P4sLepeBaOnMa8Gs/2l4vf1tIaMoA='
     end
 
     specify 'test sign generate md5' do
@@ -15,7 +15,7 @@ describe LlPay::Sign do
 
   describe '#sign sign verify' do
     specify 'test sign verify rsa' do
-      expect(LlPay::Sign.verify?({ sign_type: 'RSA', oid_partner: '201103171000000000', dt_order: '20130515094013', sign: 'gN4RdsOHfpsXzM2ylEy75R72ohrVjx50HLpQrBzti+VgTKnDrzOsS7l344hA4vkCKL7qrlSTva5LeN9WqxKkg+aS15IUbR+AzWo3+Is3QYgNQISkroKWK7skLMTQvlEvzi48azKV9VPXWtWokV4yVJpGwyjJUKgtYqTCphQ6fmc=' }, { rsa_pub_key: RSA_PUB_KEY }))
+      expect(LlPay::Sign.verify?({ sign_type: 'RSA', oid_partner: '201103171000000000', dt_order: '20130515094013', sign: 'gDPdKXfrgy9oIpWDyGGjdUoIi7iiDKrjAAk4W3UT2m27xwnqbkWEVUK/wXsKTZh7a6WUGtEKKgTLGQ9VSF5NjsdXlqx4aOZ8a4cWhqOHXsYCvokxRwdD0/Q8NJ7uw34E3+HSzNOwqjCKC6P4sLepeBaOnMa8Gs/2l4vf1tIaMoA=' }, { rsa_pub_key: RSA_PUB_KEY }))
         .to eq true
     end
 

@@ -26,7 +26,7 @@ describe LlPay::QueryOrder do
         dt_order: nil,
         no_order: '2013051500001',
         sign_type: 'RSA',
-        sign: 'f4+1KcPttjFOEWSuJYAaT4+C3t30AZ/bXyB76408ydbJDhDy8zfawwglMUexCrU4yCoPHCTXlJXhPtpgpvR+dHHpjs5DhdDFTtDq3SHeKJ+eVTcTAeoLV5kbYkHYCtCHMm7YCz4JoLk+YX+pNJ7Atz7YLjU6+XjKlrKE3qf+UA8='
+        sign: 'qKizHMrzubJAW28JmS+cs0afYEAZ2jVrpnfzBqQGDdxLsA/7ckbWJXW76XFVN3FSwTVoriYl/scx1f0FeVBorJfA85mwgcI04ZX30Ep2dWKnGWyzhrQbBMYDrOu8V9i68guT4cRwSJ9Nyqeg2cjzjuWnjnH7wzpe2eqvw6Zsmt8='
       }
 
       expect_result_json = "{\"bank_code\":\"03080000\",\"card_no\":\"621483******7016\",\"dt_order\":\"20150820120033\",\"info_order\":\"考拉理财,开启懒人理财生活。\",\"money_order\":\"0.01\",\"no_order\":\"2013051500001\",\"oid_partner\":\"201408071000001543\",\"oid_paybill\":\"2015082119289047\",\"pay_type\":\"D\",\"result_pay\":\"SUCCESS\",\"ret_code\":\"0000\",\"ret_msg\":\"交易成功\",\"settle_date\":\"20150821\",\"sign\":\"57c49eb3687e7fa86cea5906420e17f3\",\"sign_type\":\"RSA\"}"

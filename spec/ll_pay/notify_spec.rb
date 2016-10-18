@@ -3,12 +3,19 @@ require 'spec_helper'
 describe LlPay::Notify do
   describe '#test notify' do
     specify 'test notify verify rsa' do
-      expect(LlPay::Notify.verify?({ sign_type: 'RSA', oid_partner: '201103171000000000', dt_order: '20130515094013', sign: 'gN4RdsOHfpsXzM2ylEy75R72ohrVjx50HLpQrBzti+VgTKnDrzOsS7l344hA4vkCKL7qrlSTva5LeN9WqxKkg+aS15IUbR+AzWo3+Is3QYgNQISkroKWK7skLMTQvlEvzi48azKV9VPXWtWokV4yVJpGwyjJUKgtYqTCphQ6fmc=' }, { rsa_pub_key: RSA_PUB_KEY }))
-        .to eq true
-    end
+      hash_params = { 'bank_code' => '98000008',
+                      'dt_order' => '20161017154209',
+                      'money_order' => '0.01',
+                      'no_order' => '1dd1ea7523daa43c8efd7538e25c0171',
+                      'oid_partner' => '201609211001116515',
+                      'oid_paybill' => '2016101784354400',
+                      'pay_type' => 'O',
+                      'result_pay' =>'SUCCESS',
+                      'settle_date' => '20161017',
+                      'sign' => 'W8Wjd1UcTbU424U+qRbU5CxFMFrJEuChwrweDG7i9lkBMT88NNJ8hkwOC+lyyGZEjniF8QX1xlQ0V0BnAZSFMD/RKSce/Vb4SJJ0C4QubMKqy3Qs0jITmLKuPQpmolCKVMskoeRJaWFMlT6OOG5D/6B+UBsyRv/2C0l+wJLyyzI=',
+                      'sign_type' => 'RSA' }
 
-    specify 'test notify verify md5' do
-      expect(LlPay::Notify.verify?({ sign_type: 'MD5', oid_partner: '201103171000000000', dt_order: '20130515094013', sign: '2839663fe85c3195ac205fcf6648c905' }, { rsa_pub_key: RSA_PUB_KEY }))
+      expect(LlPay::Notify.verify?(hash_params, { oid_partner: '201609211001116515' }))
         .to eq true
     end
   end
