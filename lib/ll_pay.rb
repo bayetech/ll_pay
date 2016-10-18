@@ -27,6 +27,7 @@ kPE0FtaoMP3gYfh+OwI+fIRrpW3ySn3mScnc6Z700nU/VYrRkfcSCbSnRwIDAQAB
     attr_accessor :sign_type
 
     include QueryOrder
+    include RefundOrder
     include Service
     include Notify
   end
