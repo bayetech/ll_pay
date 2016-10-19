@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['houdelin@bayekeji.com']
 
   spec.summary       = 'An unofficial lianlian (for apple pay) pay gem.'
-  spec.description   = 'Helping rubyist integration with lianlian pay easier.'
+  spec.description   = 'Helping rubyist integration with lianlian pay(lianlianpay llpay) easier.'
   spec.homepage      = 'https://github.com/bayetech/ll_pay'
   spec.license       = 'MIT'
 
