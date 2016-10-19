@@ -11,7 +11,7 @@ describe LlPay do
 
       expect(HTTP).to receive(:get).with('https://yintong.com.cn/traderapi/refund.htm').and_return(HTTP::Response.new(status: 200, body: expect_result_json, version: '1.0'))
 
-      response_hash = LlPay.request(:get, 'traderapi/refund.htm')
+      response_hash = LlPay.request(:get, 'https://yintong.com.cn/traderapi/refund.htm')
 
       expect(response_hash).to eq(JSON.parse(expect_result_json))
     end
@@ -33,7 +33,7 @@ describe LlPay do
 
       expect(HTTP).to receive(:post).with('https://yintong.com.cn/traderapi/refund.htm', json: request_parms).and_return(HTTP::Response.new(status: 200, body: expect_result_json, version: '1.0'))
 
-      expect(LlPay.request(:post, 'traderapi/refund.htm', request_parms)).to eq(JSON.parse(expect_result_json))
+      expect(LlPay.request(:post, 'https://yintong.com.cn/traderapi/refund.htm', request_parms)).to eq(JSON.parse(expect_result_json))
     end
   end
 end

@@ -19,14 +19,12 @@ kPE0FtaoMP3gYfh+OwI+fIRrpW3ySn3mScnc6Z700nU/VYrRkfcSCbSnRwIDAQAB
     EOF
 
   @sign_type = 'MD5'
-  @base_url = 'https://yintong.com.cn'
 
   class << self
     attr_accessor :oid_partner # 商户编号
     attr_accessor :rsa_pri_key # 私钥
     attr_accessor :md5_key     # md5
     attr_accessor :sign_type
-    attr_accessor :base_url
 
     include QueryOrder
     include RefundOrder
@@ -34,12 +32,12 @@ kPE0FtaoMP3gYfh+OwI+fIRrpW3ySn3mScnc6Z700nU/VYrRkfcSCbSnRwIDAQAB
     include Notify
   end
 
-  def self.request(verb, resource, params = {})
+  def self.request(verb, url, params = {})
     case verb.to_sym
     when :post
-      @http_response = HTTP.post("#{base_url}/#{resource}", json: params)
+      @http_response = HTTP.post(url, json: params)
     when :get
-      @http_response = HTTP.get("#{base_url}/#{resource}")
+      @http_response = HTTP.get(url)
     end
     response_hash = JSON.parse(@http_response.body.to_s)
 
