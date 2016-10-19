@@ -11,6 +11,11 @@ describe LlPay::Sign do
       expect(LlPay::Sign.generate({ sign_type: 'MD5', oid_partner: '201103171000000000', dt_order: '20130515094013' }))
         .to eq '2839663fe85c3195ac205fcf6648c905'
     end
+
+    specify 'test sign generate none' do
+      expect { LlPay::Sign.generate({ sign_type: 'none', oid_partner: '201103171000000000', dt_order: '20130515094013' }) }
+        .to raise_error("invalid sign_type none, allow value: 'MD5', 'RSA'")
+    end
   end
 
   describe '#sign sign verify' do
@@ -22,6 +27,11 @@ describe LlPay::Sign do
     specify 'test sign verify md5' do
       expect(LlPay::Sign.verify?({ sign_type: 'MD5', oid_partner: '201103171000000000', dt_order: '20130515094013', sign: '2839663fe85c3195ac205fcf6648c905' }, { rsa_pub_key: RSA_PUB_KEY }))
         .to eq true
+    end
+
+    specify 'test sign verify none' do
+      expect(LlPay::Sign.verify?({ sign_type: 'none', oid_partner: '201103171000000000', dt_order: '20130515094013', sign: '2839663fe85c3195ac205fcf6648c905' }, { rsa_pub_key: RSA_PUB_KEY }))
+        .to eq false
     end
   end
 end
