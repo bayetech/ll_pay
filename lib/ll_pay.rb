@@ -19,16 +19,40 @@ kPE0FtaoMP3gYfh+OwI+fIRrpW3ySn3mScnc6Z700nU/VYrRkfcSCbSnRwIDAQAB
     EOF
 
   @sign_type = 'MD5'
+  @base_url = 'https://yintong.com.cn'
 
   class << self
     attr_accessor :oid_partner # 商户编号
     attr_accessor :rsa_pri_key # 私钥
     attr_accessor :md5_key     # md5
     attr_accessor :sign_type
+    attr_accessor :base_url
 
     include QueryOrder
     include RefundOrder
     include Service
     include Notify
+  end
+
+  def self.request(verb, resource, params)
+    case verb.to_sym
+    when :post
+      @http_response = HTTP.post("#{base_url}/#{resource}", json: params)
+    when :get
+      @http_response = HTTP.get("#{base_url}/#{resource}")
+    end
+    response_hash = JSON.parse(@http_response.body.to_s)
+
+    if @http_response.code == 200
+      if response_hash['ret_code'] == 0000
+        if LlPay::Sign.verify?(response_hash)
+          return response_hash
+        else
+          return { ret_msg: '签名验证错误' }
+        end
+      else
+        return response_hash
+      end
+    end
   end
 end
