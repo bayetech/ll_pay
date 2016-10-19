@@ -34,7 +34,7 @@ kPE0FtaoMP3gYfh+OwI+fIRrpW3ySn3mScnc6Z700nU/VYrRkfcSCbSnRwIDAQAB
     include Notify
   end
 
-  def self.request(verb, resource, params)
+  def self.request(verb, resource, params = {})
     case verb.to_sym
     when :post
       @http_response = HTTP.post("#{base_url}/#{resource}", json: params)
