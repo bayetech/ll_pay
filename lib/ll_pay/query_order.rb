@@ -5,15 +5,8 @@ require 'http' # https://github.com/httprb/http
 module LlPay
   module QueryOrder
     def query_single_order(sign_type, no_order, dt_order)
-      query_order_hash = { oid_partner: LlPay.oid_partner, dt_order: dt_order, no_order: no_order }
-
-      if sign_type == 'RSA'
-        query_order_hash[:sign_type] = 'RSA'
-        query_order_hash[:sign] = LlPay::Sign::RSA.sign(LlPay.rsa_pri_key, LlPay::Sign.params_to_string(query_order_hash))
-      else
-        query_order_hash[:sign_type] = 'MD5'
-        query_order_hash[:sign] = LlPay::Sign::MD5.sign(LlPay.md5_key, LlPay::Sign.params_to_string(query_order_hash))
-      end
+      query_order_hash = { oid_partner: LlPay.oid_partner, dt_order: dt_order, no_order: no_order, sign_type: sign_type }
+      query_order_hash[:sign] = LlPay::Sign.generate(query_order_hash)
 
       http_response = HTTP.post('https://yintong.com.cn/queryapi/orderquery.htm',
                                 json: query_order_hash)
@@ -26,8 +19,6 @@ module LlPay
         else
           return response_hash
         end
-      else
-        return
       end
     end
   end
