@@ -11,7 +11,7 @@ module LlPay
 
       def self.verify?(pubkey, string, sign)
         rsa = OpenSSL::PKey::RSA.new(pubkey)
-        rsa.verify('md5', Base64.strict_decode64(sign), string.force_encoding('utf-8'))
+        rsa.verify('md5', Base64.decode64(sign), string.force_encoding('utf-8'))
       end
     end
   end
