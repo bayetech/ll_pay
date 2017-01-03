@@ -5,9 +5,6 @@ module LlPay
 
     SECURITY_PAY_REQUIRED_PARAMS = %w(busi_partner dt_order info_order money_order name_goods no_order notify_url oid_partner risk_item sign_type valid_order)
     def securitypay_pay_json(params, options = {})
-      # params = LlPay::Utils.stringify_keys(params)
-      # options = LlPay::Utils.stringify_keys(options)
-
       check_required_params(params, SECURITY_PAY_REQUIRED_PARAMS)
 
       params['sign_type'] = params['sign_type'] || LlPay.sign_type
