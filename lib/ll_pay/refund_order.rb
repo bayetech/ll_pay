@@ -1,6 +1,8 @@
 module LlPay
   module RefundOrder
+    REFUND_PARAMS = %w(oid_partner sign_type no_refund dt_refund money_refund no_order dt_order oid_paybill notify_url)
     def refund_order(params)
+      LlPay::Utils.check_required_params(params, REFUND_PARAMS)
       params = LlPay::Utils.stringify_keys(params)
 
       params[:sign_type] = params[:sign_type] || LlPay.sign_type
