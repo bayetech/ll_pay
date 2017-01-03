@@ -58,13 +58,13 @@ describe LlPay::QueryOrder do
                  oid_refundno: '9016101823522307'
                }
 
-      request_parms = params.merge(sign: "HlOLdxvVhNSA5S4ElDKzM38aCAXTE+Y1JL3/RUvMwzeL4CXMvNtGRE2tNQtpM5JiPeAV1GQbcJMwx5K1c/ESD/OVj3z+P1N4iawTwcmw6W6Tt1BUX7UQBEE426Q0maG06EBRmVNfQ6Ujg3WNqaiWV+ikmU/a7nuoh7SsX2u8S0c=")
+      request_parms = params.merge(sign: "kFTjFgqn8NmBo/LOVGJ3eRLSCI9b6FXge8Jg/UpQTu8AqedX0yT6lA8wz9f4JoEwzYFZd5OaXAFQXyaOQwqb1wGJAr/XUlp31+YOgBP5sAE6nbcYb/wzHXmqZp15gjJ+AQ6FWgf8ZPN3PMAv1nOUm/8ubcSsxo+ziSw1oAQtQbw=")
 
       expect_result_json = "{\"dt_refund\":\"20161017154209\",\"money_refund\":\"0.01\",\"no_refund\":\"1dd1ea7523daa43c8efd7538e25c0171\",\"oid_partner\":\"201609211001116515\",\"oid_refundno\":\"9016101823522307\",\"ret_code\":\"0000\",\"ret_msg\":\"交易成功\",\"settle_date\":\"20161018\",\"sign\":\"4cfd1218aacf0233fb70c695bdec6af7\",\"sign_type\":\"MD5\",\"sta_refund\":\"2\"}"
 
-      expect(HTTP).to receive(:post).with('https://yintong.com.cn/traderapi/refund.htm', json: request_parms).and_return(HTTP::Response.new(status: 200, body: expect_result_json, version: '1.0'))
+      expect(HTTP).to receive(:post).with('https://queryapi.lianlianpay.com/refundquery.htm', json: request_parms).and_return(HTTP::Response.new(status: 200, body: expect_result_json, version: '1.0'))
 
-      response_hash = LlPay.refund_order(params)
+      response_hash = LlPay.refund_order_query(params)
 
       expect(response_hash).to eq(JSON.parse(expect_result_json))
     end
@@ -77,13 +77,13 @@ describe LlPay::QueryOrder do
                  oid_refundno: '9016101823522307'
                }
 
-      request_parms = params.merge(sign: "350aae8281b7a1622b6c4b884056a2d5")
+      request_parms = params.merge(sign: "df56b0bd827e978610b010320c611d42")
 
       expect_result_json = "{\"dt_refund\":\"20161017154209\",\"money_refund\":\"0.01\",\"no_refund\":\"1dd1ea7523daa43c8efd7538e25c0171\",\"oid_partner\":\"201609211001116515\",\"oid_refundno\":\"9016101823522307\",\"ret_code\":\"0000\",\"ret_msg\":\"交易成功\",\"settle_date\":\"20161018\",\"sign\":\"4cfd1218aacf0233fb70c695bdec6af7\",\"sign_type\":\"MD5\",\"sta_refund\":\"2\"}"
 
-      expect(HTTP).to receive(:post).with('https://yintong.com.cn/traderapi/refund.htm', json: request_parms).and_return(HTTP::Response.new(status: 200, body: expect_result_json, version: '1.0'))
+      expect(HTTP).to receive(:post).with('https://queryapi.lianlianpay.com/refundquery.htm', json: request_parms).and_return(HTTP::Response.new(status: 200, body: expect_result_json, version: '1.0'))
 
-      response_hash = LlPay.refund_order(params)
+      response_hash = LlPay.refund_order_query(params)
 
       expect(response_hash).to eq(JSON.parse(expect_result_json))
     end
