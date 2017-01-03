@@ -9,9 +9,19 @@ describe LlPay do
     specify 'll pay request get' do
       expect_result_json = "{\"ret_code\":\"9002\",\"ret_msg\":\"报文解析异常\"}"
 
-      expect(HTTP).to receive(:get).with('https://yintong.com.cn/traderapi/refund.htm').and_return(HTTP::Response.new(status: 200, body: expect_result_json, version: '1.0'))
+      expect(HTTP).to receive(:get).with('https://queryapi.lianlianpay.com/refundquery.htm').and_return(HTTP::Response.new(status: 200, body: expect_result_json, version: '1.0'))
 
-      response_hash = LlPay.request(:get, 'https://yintong.com.cn/traderapi/refund.htm')
+      response_hash = LlPay.request(:get, 'https://queryapi.lianlianpay.com/refundquery.htm')
+
+      expect(response_hash).to eq(JSON.parse(expect_result_json))
+    end
+
+    specify 'll pay request get' do
+      expect_result_json = "{\"ret_code\":\"0000\",\"ret_msg\":\"退款成功\"}"
+
+      expect(HTTP).to receive(:get).with('https://queryapi.lianlianpay.com/refundquery.htm').and_return(HTTP::Response.new(status: 200, body: expect_result_json, version: '1.0'))
+
+      response_hash = LlPay.request(:get, 'https://queryapi.lianlianpay.com/refundquery.htm')
 
       expect(response_hash).to eq(JSON.parse(expect_result_json))
     end
