@@ -1,8 +1,8 @@
 module LlPay
   module RefundOrder
-    REFUND_PARAMS = %w(oid_partner sign_type no_refund dt_refund money_refund no_order dt_order oid_paybill notify_url)
+    REFUND_ORDER_PARAMS = %w(oid_partner sign_type no_refund dt_refund money_refund no_order dt_order oid_paybill notify_url)
     def refund_order(params)
-      LlPay::Utils.check_required_params(params, REFUND_PARAMS)
+      LlPay::Utils.check_required_params(params, REFUND_ORDER_PARAMS)
       params = LlPay::Utils.stringify_keys(params)
 
       params[:sign_type] = params[:sign_type] || LlPay.sign_type
@@ -24,6 +24,7 @@ module LlPay
       request(:post, 'https://yintong.com.cn/traderapi/refund.htm', params)
     end
 
+    REFUND_ORDER_QUERY_PARAMS = %w(oid_partner sign_type no_refund dt_refund oid_refundno)
     def refund_order_query(params)
       params = LlPay::Utils.stringify_keys(params)
 
