@@ -32,7 +32,7 @@ kPE0FtaoMP3gYfh+OwI+fIRrpW3ySn3mScnc6Z700nU/VYrRkfcSCbSnRwIDAQAB
     include Notify
   end
 
-  def self.request(verb, url, params = {})
+  def self.request(verb, url, params = {}, options = {})
     case verb.to_sym
     when :post
       @http_response = HTTP.post(url, json: params)
@@ -42,8 +42,8 @@ kPE0FtaoMP3gYfh+OwI+fIRrpW3ySn3mScnc6Z700nU/VYrRkfcSCbSnRwIDAQAB
     response_hash = JSON.parse(@http_response.body.to_s)
 
     if @http_response.code == 200
-      if response_hash['ret_code'] == 0000
-        if LlPay::Sign.verify?(response_hash)
+      if response_hash['ret_code'] == '0000'
+        if LlPay::Sign.verify?(response_hash, options)
           return response_hash
         else
           return { ret_msg: '签名验证错误' }
