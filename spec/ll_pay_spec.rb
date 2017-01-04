@@ -6,7 +6,7 @@ describe LlPay do
   end
 
   describe '#ll pay request' do
-    specify 'll pay request error' do
+    specify 'll pay request ret_code error' do
       expect_result_json = "{\"ret_code\":\"9002\",\"ret_msg\":\"报文解析异常\"}"
 
       expect(HTTP).to receive(:get).with('https://queryapi.lianlianpay.com/refundquery.htm').and_return(HTTP::Response.new(status: 200, body: expect_result_json, version: '1.0'))
@@ -26,24 +26,14 @@ describe LlPay do
       expect(response_hash).to eq(JSON.parse(expect_result_json))
     end
 
-    specify 'll pay request post' do
-      request_parms = { sign_type: 'RSA',
-                 oid_partner: '201103171000000000',
-                 no_refund: '1dd1ea7523daa43c8efd7538e25c0171',
-                 dt_refund: '20161017154209',
-                 money_refund: '0.01',
-                 no_order: '1dd1ea7523daa43c8efd7538e25c0171',
-                 dt_order: '20161017154209',
-                 oid_paybill: '2016101784354400',
-                 notify_url: 'https://xxx.com/refund/llpay/1dd1ea7523daa43c8efd7538e25c0171/refund_callback',
-                 sign: "amAAfQnn0ZUpNWTygaTsRrNLH6TuWrshxkt9p138OZZ8/4iVjVlNuLk+0QUvvP82AtD1gdvGZQpcAryDa/mLG662WJ78DTL5zxuTImdKIGwiVDaO53UyIm7uNv7VITSbvdkrA5WZRwAFjmE9288AB8IxtKCBJguoQ6Rz05IQvlY="
-               }
+    specify 'll pay request get ret_code success, but sign error' do
+      expect_result_json = "{\"ret_code\":\"0000\",\"ret_msg\":\"退款成功\",\"sign_type\":\"RSA\",\"sign\":\"dKutUenajQnmte+a0jlsJtEOecFJX8yILTs4UTIbgRKogrgB9MR9aH7FFptKECKjsWCOEdh9r1fRLHb+a0nZ7feS/XtgtuQYy7FTPvQOnrutpXJvDstK0B9MAaNARGlUMEHhLLlvr+B/ccHDYG7eyCgos6fr2I7CrLDw=\",\"oid_partner\":\"201103171000000000\"}"
 
-      expect_result_json = "{\"money_refund\":\"0.01\",\"no_refund\":\"1dd1ea7523daa43c8efd7538e25c0171\",\"oid_partner\":\"201103171000000000\",\"oid_refundno\":\"9016101823522307\",\"ret_code\":\"0000\",\"ret_msg\":\"交易成功\",\"settle_date\":\"20161018\",\"sign\":\"sm/Tlb2ip93PqOEuw6iom3jUi9DBOTpQzPoy2JGJrGeQtNtn6YarKA7XqA9Rj5rZUKVtfpxaDK4NgD7jLdpwYrqmXI1uOA2kGG6xF/kTBHAY74EsDCKNfyCY3EkvHXMEQYovFzTqS3pIWX5+FRrsY0acGfwDAXxeV4ECz5EhFBE=\",\"sign_type\":\"RSA\",\"sta_refund\":\"2\"}"
+      expect(HTTP).to receive(:get).with('https://queryapi.lianlianpay.com/refundquery.htm').and_return(HTTP::Response.new(status: 200, body: expect_result_json, version: '1.0'))
 
-      expect(HTTP).to receive(:post).with('https://yintong.com.cn/traderapi/refund.htm', json: request_parms).and_return(HTTP::Response.new(status: 200, body: expect_result_json, version: '1.0'))
+      response_hash = LlPay.request(:get, 'https://queryapi.lianlianpay.com/refundquery.htm', {}, { rsa_pub_key: RSA_PUB_KEY })
 
-      expect(LlPay.request(:post, 'https://yintong.com.cn/traderapi/refund.htm', request_parms, { rsa_pub_key: RSA_PUB_KEY })).to eq(JSON.parse(expect_result_json))
+      expect(response_hash).to eq({ ret_msg: '签名验证错误' })
     end
   end
 end
