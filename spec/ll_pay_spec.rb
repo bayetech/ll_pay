@@ -21,7 +21,7 @@ describe LlPay do
 
       expect(HTTP).to receive(:get).with('https://queryapi.lianlianpay.com/refundquery.htm').and_return(HTTP::Response.new(status: 200, body: expect_result_json, version: '1.0'))
 
-      response_hash = LlPay.request(:get, 'https://queryapi.lianlianpay.com/refundquery.htm', {}, { rsa_pub_key: RSA_PUB_KEY })
+      response_hash = LlPay.request(:get, 'https://queryapi.lianlianpay.com/refundquery.htm')
 
       expect(response_hash).to eq(JSON.parse(expect_result_json))
     end
@@ -31,7 +31,7 @@ describe LlPay do
 
       expect(HTTP).to receive(:get).with('https://queryapi.lianlianpay.com/refundquery.htm').and_return(HTTP::Response.new(status: 200, body: expect_result_json, version: '1.0'))
 
-      response_hash = LlPay.request(:get, 'https://queryapi.lianlianpay.com/refundquery.htm', {}, { rsa_pub_key: RSA_PUB_KEY })
+      response_hash = LlPay.request(:get, 'https://queryapi.lianlianpay.com/refundquery.htm')
 
       expect(response_hash).to eq({ ret_msg: '签名验证错误' })
     end

@@ -20,7 +20,7 @@ describe LlPay::QueryOrder do
 
       expect(HTTP).to receive(:post).with('https://yintong.com.cn/traderapi/refund.htm', json: request_parms).and_return(HTTP::Response.new(status: 200, body: expect_result_json, version: '1.0'))
 
-      response_hash = LlPay.refund_order(params, { rsa_pub_key: RSA_PUB_KEY })
+      response_hash = LlPay.refund_order(params)
 
       expect(response_hash).to eq(JSON.parse(expect_result_json))
     end
@@ -64,7 +64,7 @@ describe LlPay::QueryOrder do
 
       expect(HTTP).to receive(:post).with('https://queryapi.lianlianpay.com/refundquery.htm', json: request_parms).and_return(HTTP::Response.new(status: 200, body: expect_result_json, version: '1.0'))
 
-      response_hash = LlPay.refund_order_query(params, { rsa_pub_key: RSA_PUB_KEY })
+      response_hash = LlPay.refund_order_query(params)
 
       expect(response_hash).to eq(JSON.parse(expect_result_json))
     end

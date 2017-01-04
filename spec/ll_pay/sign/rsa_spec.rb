@@ -8,7 +8,7 @@ describe LlPay::Sign::RSA do
     end
 
     specify 'test sign rsa verify' do
-      expect(LlPay::Sign::RSA.verify?(RSA_PUB_KEY, 'oid_partner=201103171000000000&dt_order=20130515094013', 'HVstS3RbooGHV/2Thji2liF1sGmIpDhVS2DEP2Pb1toxTW5N2arHoFpCwOlfi8qdwUzV+svK4hnRnGoUXqk7KoOWeFN+IRA/RHT2qS769/nE+U4SkVXrnDFdOphj2alMZYE7enuTOtQfQPnYjDZFEgylQtdlpLGrLBMkqvqlAYk='))
+      expect(LlPay::Sign::RSA.verify?(LlPay::YT_PUB_KEY, 'oid_partner=201103171000000000&dt_order=20130515094013', 'HVstS3RbooGHV/2Thji2liF1sGmIpDhVS2DEP2Pb1toxTW5N2arHoFpCwOlfi8qdwUzV+svK4hnRnGoUXqk7KoOWeFN+IRA/RHT2qS769/nE+U4SkVXrnDFdOphj2alMZYE7enuTOtQfQPnYjDZFEgylQtdlpLGrLBMkqvqlAYk='))
         .to eq true
     end
   end
