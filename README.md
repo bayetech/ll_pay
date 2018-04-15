@@ -40,7 +40,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/ll_pay.
+Bug reports and pull requests are welcome on GitHub at https://github.com/bayetech/ll_pay.
 
 
 [version-badge]: https://badge.fury.io/rb/ll_pay.svg
